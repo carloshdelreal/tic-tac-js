@@ -1,6 +1,8 @@
 const cells = document.querySelectorAll(".cell");
 const player1 = "X";
 const player2 = "O";
+let player1_plays =[];
+let player2_plays =[];
 const win = [
   [1,2,3],
   [4,5,6],
@@ -11,7 +13,7 @@ const win = [
   [3,6,9],
   [2,5,8]
 ]
-
+let lastplay='p2';
 function start() {
   for (let i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", cellClick, false);
@@ -36,9 +38,15 @@ let TicTac = function() {
 };
 
 function cellClick(cell) {
+  if (lastplay === 'p2') {
   putSymbol(cell.target.id, player1);
+  lastplay = 'p1'
+} else {
+  putSymbol(cell.target.id, player2);
+  lastplay = 'p2'
+}
 }
 function putSymbol(cellId, player) {
-  document.getElementById(cellId).innerText = player2;
+  document.getElementById(cellId).innerText = player;
 }
 start();
