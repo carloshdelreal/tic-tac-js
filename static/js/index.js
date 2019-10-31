@@ -41,9 +41,12 @@ function cellClick(cell) {
   if (lastplay === 'p2') {
   putSymbol(cell.target.id, player1);
   lastplay = 'p1'
+  player1_plays.push(parseInt(cell.target.id,10));
+  console.log(player1_plays);
 } else {
   putSymbol(cell.target.id, player2);
   lastplay = 'p2'
+  player2_plays.push(parseInt(cell.target.id,10));
 }
 }
 function putSymbol(cellId, player) {
