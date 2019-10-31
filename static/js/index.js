@@ -42,14 +42,31 @@ function cellClick(cell) {
   putSymbol(cell.target.id, player1);
   lastplay = 'p1'
   player1_plays.push(parseInt(cell.target.id,10));
+  checkWin(player1_plays,lastplay);
   console.log(player1_plays);
 } else {
   putSymbol(cell.target.id, player2);
   lastplay = 'p2'
   player2_plays.push(parseInt(cell.target.id,10));
+  checkWin(player2_plays,lastplay);
 }
 }
 function putSymbol(cellId, player) {
   document.getElementById(cellId).innerText = player;
 }
+
+function checkWin(array,lastplay){
+  if (lastplay === 'p1'){
+    let player = "player 2"
+  } else {
+    let player = "player 1"
+  }
+
+  for (let i = 0; i<= win.length ; i++) {
+    if (win[i].every(j => array.includes(j))) {
+      alert("Winner ")
+    }
+  }
+}
+
 start();
