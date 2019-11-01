@@ -42,7 +42,7 @@ const Board = () => {
   function checkWin(player) {
     for (let i = 0; i < win.length; i++) {
       if (win[i].every((j) => player.getPlays().includes(j))) {
-        stop();
+        stop(win[i]);
         return true;
       }
     }
@@ -57,14 +57,18 @@ const Board = () => {
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener("click", TicTac.cellClick, false);
       cells[i].innerText = "";
+      cells[i].backgroundColor="white";
     }
   }
 
-  function stop() {
+  function stop(winarr) {
     for (let i = 0; i < cells.length; i++) {
       cells[i].removeEventListener("click", TicTac.cellClick, false);
-
     }
+    winarr.forEach(function(element) {
+
+  cells[element-1].style.backgroundColor='green';
+});
   }
 
   return { checkWin, putSymbol, start };
