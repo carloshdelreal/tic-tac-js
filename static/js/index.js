@@ -49,6 +49,24 @@ const Board = () => {
     return false;
   }
 
+  function checkEmptyCells(){
+    let empty = 0;
+    for (let i = 0; i < cells.length; i++) {
+      if  (cells[i].innerText === "") {
+        empty+=1;
+      }
+
+    }
+    return empty;
+  }
+
+  function checkDraw(){
+    if (checkEmptyCells > 0){
+      return false;
+    }
+    return true;
+  }
+
   function putSymbol(cellId, player) {
     document.getElementById(cellId).innerText = player.getSym();
   }
@@ -71,7 +89,7 @@ const Board = () => {
 });
   }
 
-  return { checkWin, putSymbol, start };
+  return { checkWin, putSymbol, start,checkDraw };
 };
 
 // TIC TAC TOE MAIN
@@ -202,8 +220,11 @@ let TicTac = (function() {
 
     if (board.checkWin(turn)) {
       winner();
+
       return null;
     }
+
+    
     flipTurn();
     screenUpdate();
   };
