@@ -42,6 +42,7 @@ const Board = () => {
   function checkWin(player) {
     for (let i = 0; i < win.length; i++) {
       if (win[i].every((j) => player.getPlays().includes(j))) {
+        stop();
         return true;
       }
     }
@@ -56,6 +57,13 @@ const Board = () => {
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener("click", TicTac.cellClick, false);
       cells[i].innerText = "";
+    }
+  }
+
+  function stop() {
+    for (let i = 0; i < cells.length; i++) {
+      cells[i].removeEventListener("click", TicTac.cellClick, false);
+
     }
   }
 
@@ -153,6 +161,7 @@ let TicTac = (function() {
     end.style.display = "block";
     end.innerHTML = `Congratulations ${turn.getName()}, you Win!`;
     document.querySelector(".turnFor").innerHTML = `${turn.getName()}, Won!`;
+
   };
   publicTicTac.playAgain = () => {
     Player1.resetPlays();
