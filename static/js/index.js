@@ -44,6 +44,14 @@ const Board = () => {
     return false;
   }
 
+  function checkDraw() {
+    if (checkEmptyCells() > 0) {
+      return false;
+    }
+    stop([]);
+    return true;
+  }
+
   function validMove(cellid) {
     if (played.includes(cellid)) {
       return false;
@@ -61,13 +69,6 @@ const Board = () => {
       }
     }
     return empty;
-  }
-
-  function checkDraw() {
-    if (checkEmptyCells() > 0) {
-      return false;
-    }
-    return true;
   }
 
   function putSymbol(cellId, player) {
