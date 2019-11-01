@@ -96,6 +96,7 @@ const Board = () => {
     winarr.forEach(function(element) {
       cells[element - 1].style.backgroundColor = "green";
     });
+    document.getElementById("playAgainBtn").style.display="flex";
   }
 
   return { checkWin, putSymbol, start, checkDraw, validMove };
@@ -205,7 +206,7 @@ let TicTac = (function() {
     Player1.resetPlays();
     Player2.resetPlays();
     document.querySelector(".endgame").style.display = "none";
-
+    document.getElementById("playAgainBtn").style.display="none";
     beginGame();
   };
 
