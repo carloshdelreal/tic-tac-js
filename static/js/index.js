@@ -70,7 +70,7 @@ const Board = () => {
   }
 
   function checkDraw() {
-    if (checkEmptyCells > 0) {
+    if (checkEmptyCells() > 0) {
       return false;
     }
     return true;
@@ -193,6 +193,14 @@ let TicTac = (function() {
     end.innerHTML = `Congratulations ${turn.getName()}, you Win!`;
     document.querySelector(".turnFor").innerHTML = `${turn.getName()}, Won!`;
   };
+
+  const tie = () => {
+    let end = document.querySelector(".endgame");
+    end.style.display = "block";
+    end.innerHTML = `Its a tie, Play Again!`;
+    document.querySelector(".turnFor").innerHTML = `Its a tie, Play Again!`;
+  };
+
   publicTicTac.playAgain = () => {
     Player1.resetPlays();
     Player2.resetPlays();
@@ -229,6 +237,10 @@ let TicTac = (function() {
 
       if (board.checkWin(turn)) {
         winner();
+
+        return null;
+      } else if (board.checkDraw()) {
+        tie();
 
         return null;
       }
