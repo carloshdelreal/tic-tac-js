@@ -44,6 +44,7 @@ const Board = () => {
   function checkWin(player) {
     for (let i = 0; i < win.length; i += 1) {
       if (win[i].every((j) => player.getPlays().includes(j))) {
+        /* eslint-disable no-use-before-define */
         stop(win[i]);
         return true;
       }
@@ -219,7 +220,7 @@ let TicTac = (function () {
     document.getElementById('playAgainBtn').style.display = 'none';
     beginGame();
   };
-
+  /* eslint-disable func-names*/
   publicTicTac.startGame = function () {
     // Ask the user if want to play tic tac toe
     const confPlay = confirm("Let's play Tic Tac Toe!");
@@ -243,7 +244,7 @@ let TicTac = (function () {
 
   publicTicTac.cellClick = (cell) => {
     if (board.validMove(cell.target.id)) {
-      turn.addPlay(parseInt(cell.target.id), 10);
+      turn.addPlay(parseInt(cell.target.id, 10));
       board.putSymbol(cell.target.id, turn);
 
       if (board.checkWin(turn)) {
