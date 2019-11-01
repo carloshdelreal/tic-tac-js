@@ -1,6 +1,6 @@
 // PLAYER FACTORY
 const Player = (name) => {
-  let playerName = name;
+  const playerName = name;
   let playerSym = null;
   let plays = [];
   const getName = () => playerName;
@@ -16,7 +16,14 @@ const Player = (name) => {
     plays = [];
   };
 
-  return { getName, addPlay, getPlays, setSym, getSym, resetPlays };
+  return {
+    getName,
+    addPlay,
+    getPlays,
+    setSym,
+    getSym,
+    resetPlays,
+  };
 };
 
 // GAME BOARD MODULE
@@ -55,10 +62,9 @@ const Board = () => {
   function validMove(cellid) {
     if (played.includes(cellid)) {
       return false;
-    } else {
-      played.push(cellid);
-      return true;
     }
+    played.push(cellid);
+    return true;
   }
 
   function checkEmptyCells() {
@@ -88,29 +94,35 @@ const Board = () => {
     for (let i = 0; i < cells.length; i += 1) {
       cells[i].removeEventListener('click', TicTac.cellClick, false);
     }
-    winarr.forEach(function(element) {
+    winarr.forEach((element) => {
       cells[element - 1].style.backgroundColor = 'green';
     });
     document.getElementById('playAgainBtn').style.display = 'flex';
   }
 
-  return { checkWin, putSymbol, start, checkDraw, validMove };
+  return {
+    checkWin,
+    putSymbol,
+    start,
+    checkDraw,
+    validMove,
+  };
 };
 
 // TIC TAC TOE MAIN
 
-let TicTac = (function() {
+let TicTac = (function () {
   let Player1 = null;
   let Player2 = null;
   let turn = null;
-  let board = Board();
+  const board = Board();
 
-  let publicTicTac = {};
+  const publicTicTac = {};
 
   const pickTurn = () => {
     let turnFor = prompt(
       `Who wants to play First, ${Player1.getName()} | ${Player2.getName()} | Random `,
-      'Random'
+      'Random',
     );
     turnFor = turnFor.toLowerCase();
     switch (turnFor) {
@@ -133,7 +145,7 @@ let TicTac = (function() {
   const setPlayerSymbol = () => {
     let selectedSym = prompt(
       `Select ${turn.getName()} symbol X | O | Random `,
-      'Random'
+      'Random',
     );
     selectedSym = selectedSym.toLowerCase();
     switch (selectedSym) {
@@ -152,7 +164,7 @@ let TicTac = (function() {
       case 'random':
         // Random 1 or 2
         turn.setSym(['X', 'O'][[0, 1][Math.floor(Math.random() * 2)]]);
-        if (turn.getSym() == 'X') {
+        if (turn.getSym() === 'X') {
           flipTurn();
           turn.setSym('O');
           flipTurn();
@@ -187,17 +199,17 @@ let TicTac = (function() {
   };
 
   const winner = () => {
-    let end = document.querySelector('.endgame');
+    const end = document.querySelector('.endgame');
     end.style.display = 'block';
     end.innerHTML = `Congratulations ${turn.getName()}, you Win!`;
     document.querySelector('.turnFor').innerHTML = `${turn.getName()}, Won!`;
   };
 
   const tie = () => {
-    let end = document.querySelector('.endgame');
+    const end = document.querySelector('.endgame');
     end.style.display = 'block';
-    end.innerHTML = `Its a tie, Play Again!`;
-    document.querySelector('.turnFor').innerHTML = `Its a tie, Play Again!`;
+    end.innerHTML = 'Its a tie, Play Again!';
+    document.querySelector('.turnFor').innerHTML = 'Its a tie, Play Again!';
   };
 
   publicTicTac.playAgain = () => {
@@ -208,9 +220,9 @@ let TicTac = (function() {
     beginGame();
   };
 
-  publicTicTac.startGame = function() {
+  publicTicTac.startGame = function () {
     // Ask the user if want to play tic tac toe
-    let confPlay = confirm("Let's play Tic Tac Toe!");
+    const confPlay = confirm("Let's play Tic Tac Toe!");
     if (!confPlay) {
       return null;
     }
@@ -238,7 +250,7 @@ let TicTac = (function() {
         winner();
 
         return null;
-      } else if (board.checkDraw()) {
+      } if (board.checkDraw()) {
         tie();
 
         return null;
@@ -250,7 +262,7 @@ let TicTac = (function() {
   };
 
   return publicTicTac;
-})();
+}());
 
 document.getElementById('startBtn').addEventListener('click', TicTac.startGame);
 
