@@ -3,21 +3,15 @@ const Player = (name) => {
   let playerName = name;
   let playerSym = null;
   let plays = [];
-  const getName = () => {
-    return playerName;
-  };
+  const getName = () => playerName;
   const addPlay = (play) => {
     plays.push(play);
   };
-  const getPlays = () => {
-    return plays;
-  };
+  const getPlays = () => plays;
   const setSym = (symbol) => {
     playerSym = symbol;
   };
-  const getSym = () => {
-    return playerSym;
-  };
+  const getSym = () => playerSym;
   const resetPlays = () => {
     plays = [];
   };
@@ -27,7 +21,7 @@ const Player = (name) => {
 
 // GAME BOARD MODULE
 const Board = () => {
-  const cells = document.querySelectorAll(".cell"); //Board
+  const cells = document.querySelectorAll('.cell'); // Board
   let played = [];
   const win = [
     [1, 2, 3],
@@ -41,7 +35,7 @@ const Board = () => {
   ];
 
   function checkWin(player) {
-    for (let i = 0; i < win.length; i++) {
+    for (let i = 0; i < win.length; i += 1) {
       if (win[i].every((j) => player.getPlays().includes(j))) {
         stop(win[i]);
         return true;
@@ -61,8 +55,8 @@ const Board = () => {
 
   function checkEmptyCells() {
     let empty = 0;
-    for (let i = 0; i < cells.length; i++) {
-      if (cells[i].innerText === "") {
+    for (let i = 0; i < cells.length; i += 1) {
+      if (cells[i].innerText === '') {
         empty += 1;
       }
     }
@@ -81,20 +75,20 @@ const Board = () => {
   }
 
   function start() {
-    for (let i = 0; i < cells.length; i++) {
-      cells[i].addEventListener("click", TicTac.cellClick, false);
-      cells[i].innerText = "";
-      cells[i].style.backgroundColor = "white";
+    for (let i = 0; i < cells.length; i += 1) {
+      cells[i].addEventListener('click', TicTac.cellClick, false);
+      cells[i].innerText = '';
+      cells[i].style.backgroundColor = 'white';
     }
     played = [];
   }
 
   function stop(winarr) {
-    for (let i = 0; i < cells.length; i++) {
-      cells[i].removeEventListener("click", TicTac.cellClick, false);
+    for (let i = 0; i < cells.length; i += 1) {
+      cells[i].removeEventListener('click', TicTac.cellClick, false);
     }
     winarr.forEach(function(element) {
-      cells[element - 1].style.backgroundColor = "green";
+      cells[element - 1].style.backgroundColor = 'green';
     });
   }
 
@@ -114,7 +108,7 @@ let TicTac = (function() {
   const pickTurn = () => {
     let turnFor = prompt(
       `Who wants to play First, ${Player1.getName()} | ${Player2.getName()} | Random `,
-      "Random"
+      'Random'
     );
     turnFor = turnFor.toLowerCase();
     switch (turnFor) {
@@ -124,48 +118,51 @@ let TicTac = (function() {
       case `${Player2.getName()}`.toLowerCase():
         turn = Player2;
         break;
-      case "random":
+      case 'random':
         // Random 1 or 2
         turn = [Player1, Player2][[0, 1][Math.floor(Math.random() * 2)]];
         break;
       default:
-        alert("You put an invalid entry");
+        alert('You put an invalid entry');
         pickTurn();
     }
   };
 
   const setPlayerSymbol = () => {
-    let selectedSym = prompt(`Select ${turn.getName()} symbol X | O | Random `, "Random");
+    let selectedSym = prompt(
+      `Select ${turn.getName()} symbol X | O | Random `,
+      'Random'
+    );
     selectedSym = selectedSym.toLowerCase();
     switch (selectedSym) {
-      case "x":
-        turn.setSym("X");
+      case 'x':
+        turn.setSym('X');
         flipTurn();
-        turn.setSym("O");
-        flipTurn();
-        break;
-      case "o":
-        turn.setSym("O");
-        flipTurn();
-        turn.setSym("X");
+        turn.setSym('O');
         flipTurn();
         break;
-      case "random":
+      case 'o':
+        turn.setSym('O');
+        flipTurn();
+        turn.setSym('X');
+        flipTurn();
+        break;
+      case 'random':
         // Random 1 or 2
-        turn.setSym(["X", "O"][[0, 1][Math.floor(Math.random() * 2)]]);
-        if (turn.getSym() == "X") {
+        turn.setSym(['X', 'O'][[0, 1][Math.floor(Math.random() * 2)]]);
+        if (turn.getSym() == 'X') {
           flipTurn();
-          turn.setSym("O");
+          turn.setSym('O');
           flipTurn();
         } else {
-          turn.setSym("O");
+          turn.setSym('O');
           flipTurn();
-          turn.setSym("X");
+          turn.setSym('X');
           flipTurn();
         }
         break;
       default:
-        alert("You put an invalid entry");
+        alert('You put an invalid entry');
         setPlayerSymbol();
     }
   };
@@ -179,7 +176,7 @@ let TicTac = (function() {
   };
 
   const screenUpdate = () => {
-    document.querySelector(".turnFor").innerHTML = turn.getName();
+    document.querySelector('.turnFor').innerHTML = turn.getName();
   };
 
   const beginGame = () => {
@@ -188,23 +185,23 @@ let TicTac = (function() {
   };
 
   const winner = () => {
-    let end = document.querySelector(".endgame");
-    end.style.display = "block";
+    let end = document.querySelector('.endgame');
+    end.style.display = 'block';
     end.innerHTML = `Congratulations ${turn.getName()}, you Win!`;
-    document.querySelector(".turnFor").innerHTML = `${turn.getName()}, Won!`;
+    document.querySelector('.turnFor').innerHTML = `${turn.getName()}, Won!`;
   };
 
   const tie = () => {
-    let end = document.querySelector(".endgame");
-    end.style.display = "block";
+    let end = document.querySelector('.endgame');
+    end.style.display = 'block';
     end.innerHTML = `Its a tie, Play Again!`;
-    document.querySelector(".turnFor").innerHTML = `Its a tie, Play Again!`;
+    document.querySelector('.turnFor').innerHTML = `Its a tie, Play Again!`;
   };
 
   publicTicTac.playAgain = () => {
     Player1.resetPlays();
     Player2.resetPlays();
-    document.querySelector(".endgame").style.display = "none";
+    document.querySelector('.endgame').style.display = 'none';
 
     beginGame();
   };
@@ -217,8 +214,8 @@ let TicTac = (function() {
     }
 
     // Set The players names and Symbol
-    Player1 = Player(prompt("Please enter player's 1 name", "Player 1"));
-    Player2 = Player(prompt("Please enter player's 2 name", "Player 2"));
+    Player1 = Player(prompt("Please enter player's 1 name", 'Player 1'));
+    Player2 = Player(prompt("Please enter player's 2 name", 'Player 2'));
 
     // Set The Turn
     pickTurn();
@@ -253,6 +250,8 @@ let TicTac = (function() {
   return publicTicTac;
 })();
 
-document.getElementById("startBtn").addEventListener("click", TicTac.startGame);
+document.getElementById('startBtn').addEventListener('click', TicTac.startGame);
 
-document.getElementById("playAgainBtn").addEventListener("click", TicTac.playAgain);
+document
+  .getElementById('playAgainBtn')
+  .addEventListener('click', TicTac.playAgain);
