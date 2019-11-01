@@ -28,6 +28,7 @@ const Player = (name) => {
 // GAME BOARD MODULE
 const Board = () => {
   const cells = document.querySelectorAll(".cell"); //Board
+  let played = [];
   const win = [
     [1, 2, 3],
     [4, 5, 6],
@@ -49,19 +50,27 @@ const Board = () => {
     return false;
   }
 
-  function checkEmptyCells(){
+  function validMove(cellid) {
+    if (played.includes(cellid)) {
+      return false;
+    } else {
+      played.push(cellid);
+      return true;
+    }
+  }
+
+  function checkEmptyCells() {
     let empty = 0;
     for (let i = 0; i < cells.length; i++) {
-      if  (cells[i].innerText === "") {
-        empty+=1;
+      if (cells[i].innerText === "") {
+        empty += 1;
       }
-
     }
     return empty;
   }
 
-  function checkDraw(){
-    if (checkEmptyCells > 0){
+  function checkDraw() {
+    if (checkEmptyCells > 0) {
       return false;
     }
     return true;
@@ -75,8 +84,9 @@ const Board = () => {
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener("click", TicTac.cellClick, false);
       cells[i].innerText = "";
-      cells[i].style.backgroundColor='white';
+      cells[i].style.backgroundColor = "white";
     }
+    played = [];
   }
 
   function stop(winarr) {
@@ -84,12 +94,11 @@ const Board = () => {
       cells[i].removeEventListener("click", TicTac.cellClick, false);
     }
     winarr.forEach(function(element) {
-
-  cells[element-1].style.backgroundColor='green';
-});
+      cells[element - 1].style.backgroundColor = "green";
+    });
   }
 
-  return { checkWin, putSymbol, start,checkDraw };
+  return { checkWin, putSymbol, start, checkDraw, validMove };
 };
 
 // TIC TAC TOE MAIN
@@ -183,7 +192,6 @@ let TicTac = (function() {
     end.style.display = "block";
     end.innerHTML = `Congratulations ${turn.getName()}, you Win!`;
     document.querySelector(".turnFor").innerHTML = `${turn.getName()}, Won!`;
-
   };
   publicTicTac.playAgain = () => {
     Player1.resetPlays();
@@ -215,18 +223,19 @@ let TicTac = (function() {
   };
 
   publicTicTac.cellClick = (cell) => {
-    turn.addPlay(parseInt(cell.target.id), 10);
-    board.putSymbol(cell.target.id, turn);
+    if (board.validMove(cell.target.id)) {
+      turn.addPlay(parseInt(cell.target.id), 10);
+      board.putSymbol(cell.target.id, turn);
 
-    if (board.checkWin(turn)) {
-      winner();
+      if (board.checkWin(turn)) {
+        winner();
 
-      return null;
+        return null;
+      }
+
+      flipTurn();
+      screenUpdate();
     }
-
-    
-    flipTurn();
-    screenUpdate();
   };
 
   return publicTicTac;
