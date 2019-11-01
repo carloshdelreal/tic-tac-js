@@ -57,7 +57,7 @@ const Board = () => {
     for (let i = 0; i < cells.length; i++) {
       cells[i].addEventListener("click", TicTac.cellClick, false);
       cells[i].innerText = "";
-      cells[i].backgroundColor="white";
+      cells[i].style.backgroundColor='white';
     }
   }
 
