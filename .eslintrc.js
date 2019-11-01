@@ -15,6 +15,5 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    "no-alert": "off",
   },
 };

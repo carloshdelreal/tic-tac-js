@@ -109,7 +109,7 @@ const Board = () => {
     validMove,
   };
 };
-
+/* eslint-disable func-names, consistent-return */
 // TIC TAC TOE MAIN
 
 let TicTac = (function () {
@@ -119,10 +119,10 @@ let TicTac = (function () {
   const board = Board();
 
   const publicTicTac = {};
-
+  /* eslint-disable no-alert */
   const pickTurn = () => {
     let turnFor = prompt(
-      `Who wants to play First, ${Player1.getName()} | ${Player2.getName()} | Random `,
+      `Who wants to play First, ${Player1.getName()} | ${Player2.getName()} |   Random `,
       'Random',
     );
     turnFor = turnFor.toLowerCase();
@@ -220,8 +220,9 @@ let TicTac = (function () {
     document.getElementById('playAgainBtn').style.display = 'none';
     beginGame();
   };
-  /* eslint-disable func-names*/
+  /* eslint-disable func-names, consistent-return */
   publicTicTac.startGame = function () {
+    /* eslint-disable no-restricted-globals */
     // Ask the user if want to play tic tac toe
     const confPlay = confirm("Let's play Tic Tac Toe!");
     if (!confPlay) {
