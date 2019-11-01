@@ -34,3 +34,8 @@ table tr td:first-child {
 button {
   margin: 10px, 0px;
 }
+#playAgainBtn{
+  display:none;
+  margin-top:10px;
+
+}
