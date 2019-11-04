@@ -123,7 +123,7 @@ let TicTac = (function () {
   const pickTurn = () => {
     let turnFor = prompt(
       `Who wants to play First, ${Player1.getName()} | ${Player2.getName()} |   Random `,
-      'Random',
+      'Random'
     );
     turnFor = turnFor.toLowerCase();
     switch (turnFor) {
