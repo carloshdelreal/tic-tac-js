@@ -1,17 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "rules": {
-    }
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb", "eslint:recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "arrow-body-style": "error",
+    "object-curly-newline": "error",
+    "spaced-comment": "error",
+    "no-plusplus": "error",
+    "arrow-parens": "error",
+    "no-use-before-define": "error",
+    "no-else-return": "error",
+    "quotes": "error",
+    "func-names": "error",
+    "prefer-arrow-callback": "error",
+    "wrap-iife": "error"
+  }
 }
