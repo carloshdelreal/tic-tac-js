@@ -4,12 +4,6 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="./static/style/main.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -25,34 +19,51 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="../style/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet"> 
+    <link
+      href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap"
+      rel="stylesheet"
+    />
     <title>Library</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-12"></div>
-        <table>
-          <tr>
-            <td class="cell" id='1'></td>
-            <td class="cell" id='2'></td>
-            <td class="cell" id='3'></td>
-          </tr>
-          <tr>
-            <td class="cell" id='4'></td>
-            <td class="cell" id='5'></td>
-            <td class="cell" id='6'></td>
-          </tr>
-          <tr>
-            <td class="cell" id='7'></td>
-            <td class="cell" id='8'></td>
-            <td class="cell" id='9'></td>
-          </tr>
+        <div class="col-md-12">
+          <h3 class="card card-body bg-light">Tic Tac Toe</h3>
+          <p>one amazing and adictive game :D</p>
+          <div class="row">
+            <div class="col-md-6">
+              <table>
+                <tr>
+                  <td class="cell" id="1"></td>
+                  <td class="cell" id="2"></td>
+                  <td class="cell" id="3"></td>
+                </tr>
+                <tr>
+                  <td class="cell" id="4"></td>
+                  <td class="cell" id="5"></td>
+                  <td class="cell" id="6"></td>
+                </tr>
+                <tr>
+                  <td class="cell" id="7"></td>
+                  <td class="cell" id="8"></td>
+                  <td class="cell" id="9"></td>
+                </tr>
+              </table>
+            </div>
 
-        </table>
-        <div class="endgame">
-        <p> only visible after the end </p>
+            <div class="col-md-6">
+              <button id="startBtn" class="btn btn-success">start game!</button>
+              <button id="playAgainBtn" class="btn btn-success">Play Again</button>
+              <hr />
+              <div class="card card-body bg-light">
+                <h5>Turn for:</h5>
+                <p class="turnFor"></p>
+              </div>
+              <hr />
+              <h3 class="endgame card card-body bg-success" style="display: none;"></h3>
+            </div>
+          </div>
         </div>
       </div>
     </div>

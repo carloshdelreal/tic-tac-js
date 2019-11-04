@@ -4,13 +4,15 @@
   "description": "Tic Tac Toe game developed on JavaScript.",
   "main": "index.js",
   "dependencies": {
-    "eslint-config-airbnb": "^18.0.1"
+    "eslint-plugin-prettier": "^3.1.1"
   },
   "devDependencies": {
-    "eslint": "^6.6.0"
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .eslintrc.js --fix"
   },
   "author": "",
   "license": "ISC"
