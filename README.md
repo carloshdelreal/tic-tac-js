@@ -20,7 +20,11 @@ This project was created by:
 
 - António Fernandes [Github account](https://github.com/trox115) [https://github.com/trox115][https://github.com/trox115]
 
-* Carlos Del Real [Github Account https://github.com/carloshdelreal](https://github.com/carloshdelreal)
+- Carlos Del Real [Github Account https://github.com/carloshdelreal](https://github.com/carloshdelreal)
+
+# Project Live Version
+
+You can check this project's live version [Tic Tac Js](https://carloshdelreal.github.io/tic-tac-js/)
 
 # License
 
